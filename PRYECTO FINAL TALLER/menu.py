@@ -1,8 +1,9 @@
 import mysql.connector
 import bcrypt
-from conexion import conectar 
+from conexion import conectar
+import home  # Importa el módulo home
 
-# Función para mostrar el menú
+# Función para mostrar el menú principal
 def mostrar_menu():
     print("\n--- Menú Principal ---")
     print("1. Iniciar Sesión")
@@ -44,13 +45,15 @@ def iniciar_sesion():
     cursor = conexion.cursor()
     try:
         cursor.execute(
-            "SELECT contraseña FROM usuarios WHERE nombre_usuario = %s",
+            "SELECT id_usuario, contraseña FROM usuarios WHERE nombre_usuario = %s",
             (nombre_usuario,)
         )
         resultado = cursor.fetchone()
         
-        if resultado and bcrypt.checkpw(contrasena.encode('utf-8'), resultado[0].encode('utf-8')):
+        if resultado and bcrypt.checkpw(contrasena.encode('utf-8'), resultado[1].encode('utf-8')):
             print("Inicio de sesión exitoso.")
+            id_usuario = resultado[0]
+            home.menu_usuario(id_usuario)  # Llama al menú del home y pasa el id_usuario
         else:
             print("Usuario o contraseña incorrectos.")
     except mysql.connector.Error as err:
@@ -65,6 +68,7 @@ while True:
     opcion = input("Elige una opción: ")
     if opcion == "1":
         iniciar_sesion()
+        break  # Detiene el menú principal si se inicia sesión exitosamente
     elif opcion == "2":
         registrar()
     elif opcion == "3":
