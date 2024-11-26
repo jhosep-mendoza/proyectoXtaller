@@ -13,6 +13,6 @@ class formularioLogin:
     base.mainloop()
             
   except ValueError as error:
-            print ('Error al mostrar la interfaz, error: {}'.format(error))
+            print ('❌ Error al mostrar la interfaz, error: {}'.format(error))
             
  Formulario()

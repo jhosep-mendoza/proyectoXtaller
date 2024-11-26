@@ -20,7 +20,7 @@ class Tweet:
             tweets = cursor.fetchall()
             return tweets
         except Exception as e:
-            print(f"Error al obtener tweets: {e}")
+            print(f"❌ Error al obtener tweets: {e}")
             return []
         finally:
             cursor.close()

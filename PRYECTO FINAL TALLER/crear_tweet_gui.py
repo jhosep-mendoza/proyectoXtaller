@@ -54,10 +54,10 @@ class CrearTweetGUI:
         """Guarda el tweet en la base de datos."""
         contenido = self.texto_contenido.get("1.0", tk.END).strip()
         if not contenido:
-            messagebox.showerror("Error", "El contenido del tweet no puede estar vacío.")
+            messagebox.showerror("❌ Error", "El contenido del tweet no puede estar vacío.")
             return
         if len(contenido) > 280:
-            messagebox.showerror("Error", "El tweet no puede tener más de 280 caracteres.")
+            messagebox.showerror("❌ Error", "El tweet no puede tener más de 280 caracteres.")
             return
 
         conexion = self.db.conectar()
@@ -71,12 +71,12 @@ class CrearTweetGUI:
                 (self.id_usuario, contenido, self.imagen_url)
             )
             conexion.commit()
-            messagebox.showinfo("Éxito", "Tweet publicado con éxito.")
+            messagebox.showinfo("✅ Éxito", "Tweet publicado con éxito.")
             self.texto_contenido.delete("1.0", tk.END)
             self.etiqueta_imagen.config(text="No se ha seleccionado una imagen.")
             self.imagen_url = None
         except Exception as e:
-            messagebox.showerror("Error", f"Error al publicar el tweet: {e}")
+            messagebox.showerror("❌ Error", f"Error al publicar el tweet: {e}")
         finally:
             cursor.close()
             conexion.close()
