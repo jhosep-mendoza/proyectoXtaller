@@ -5,7 +5,6 @@ import bcrypt
 from crear_tweet_gui import CrearTweetGUI
 from ver_tweets_con_imagen_gui import VerTweetsConImagenGUI
 
-
 class Menu:
     def __init__(self):
         self.db = BaseDatos()
@@ -16,7 +15,10 @@ class Menu:
             "1": self.visualizar_tweets,
             "2": self.crear_tweet,
             "3": self.ver_perfil,
-            "4": self.salir
+            "4": self.eliminar_tweet,
+            "5": self.eliminar_comentario,
+            "6": self.eliminar_cuenta,
+            "7": self.salir
         }
 
     def bienvenida(self):
@@ -93,7 +95,10 @@ class Menu:
         print("1. Visualizar Tweets")
         print("2. Crear Tweet")
         print("3. Ver Perfil")
-        print("4. Salir")
+        print("4. Eliminar Tweet")
+        print("5. Eliminar Comentario")
+        print("6. Eliminar Cuenta")
+        print("7. Salir")
 
     def ejecutar_opcion_principal(self, opcion):
         accion = self.opciones_menu_principal.get(opcion)
@@ -150,6 +155,18 @@ class Menu:
         """Llama al método 'ver_perfil' de la clase Perfil"""
         self.perfil.ver_perfil(self.usuario_actual)
 
+    def eliminar_tweet(self):
+        id_tweet = input("Introduce el ID del tweet que deseas eliminar: ")
+        self.db.eliminar_tweet(id_tweet)
+    
+    def eliminar_comentario(self):
+        id_comentario = input("Introduce el ID del comentario que deseas eliminar: ")
+        self.db.eliminar_comentario(id_comentario)
+    
+    def eliminar_cuenta(self):
+        id_usuario = input("Introduce el ID de la cuenta que deseas eliminar: ")
+        self.db.eliminar_cuenta(id_usuario)
+    
     def salir(self):
         print("Cerrando sesión...")
         self.usuario_actual = None
@@ -168,4 +185,3 @@ class Menu:
         """Inicia la interfaz gráfica para crear un tweet."""
         gui = CrearTweetGUI(self.usuario_actual)
         gui.iniciar()
-
