@@ -25,23 +25,3 @@ class Tweet:
         finally:
             cursor.close()
             conexion.close()
-
-    def eliminar_tweet(self, id_tweet):
-        """Permite al usuario eliminar un tweet específico de la base de datos."""
-        confirmacion = input("¿Estás seguro de que deseas eliminar este tweet? Esta acción es irreversible (sí/no): ")
-    
-        if confirmacion.lower() == 'sí':
-            conexion = self.db.conectar()
-            cursor = conexion.cursor()
-            try:
-                # Borrar el tweet de la base de datos
-                cursor.execute("DELETE FROM publicaciones WHERE id_tweet = %s", (id_tweet,))
-                conexion.commit()
-                print("✅ Tweet eliminado exitosamente.")
-            except Exception as e:
-                print(f"❌ Error al eliminar el tweet: {e}")
-            finally:
-                cursor.close()
-                conexion.close()
-        else:
-            print("❌ La acción de eliminar el tweet ha sido cancelada.")
