@@ -20,7 +20,7 @@ class Menu:
         }
 
     def bienvenida(self):
-        print("\n--- Bienvenido a MiniTwitter ---")
+        print("\n--- Bienvenido a Twitter ---")
         print("1. Iniciar Sesión")
         print("2. Registrarse")
         print("3. Salir")
@@ -30,10 +30,10 @@ class Menu:
         elif opcion == "2":
             self.registrarse()
         elif opcion == "3":
-            print("Gracias por usar MiniTwitter. ¡Hasta luego!")
+            print("Gracias por usar Twitter. ¡Hasta luego!")
             exit()
         else:
-            print("Opción no válida. Por favor, intenta de nuevo.")
+            print("❌ Opción no válida. Por favor, intenta de nuevo.")
             self.bienvenida()
 
     def iniciar_sesion(self):
@@ -51,14 +51,14 @@ class Menu:
             resultado = cursor.fetchone()
 
             if resultado and bcrypt.checkpw(contrasena.encode('utf-8'), resultado[1].encode('utf-8')):
-                print("Inicio de sesión exitoso.")
+                print("✅ Inicio de sesión exitoso.")
                 self.usuario_actual = resultado[0]
                 self.menu_principal()
             else:
-                print("Usuario o contraseña incorrectos.")
+                print("❌ Usuario o contraseña incorrectos ")
                 self.bienvenida()
         except Exception as e:
-            print(f"Error al iniciar sesión: {e}")
+            print(f"❌ Error al iniciar sesión: {e}")
         finally:
             cursor.close()
             conexion.close()
@@ -80,10 +80,10 @@ class Menu:
                 (nombre_usuario, email, contrasena_encriptada)
             )
             conexion.commit()
-            print("Registro exitoso. Ahora puedes iniciar sesión.")
+            print("✅ Registro exitoso. Ahora puedes iniciar sesión.")
             self.bienvenida()
         except Exception as e:
-            print(f"Error al registrar el usuario: {e}")
+            print(f"❌ Error al registrar el usuario: {e}")
         finally:
             cursor.close()
             conexion.close()
@@ -100,7 +100,7 @@ class Menu:
         if accion:
             accion()
         else:
-            print("Opción no válida. Por favor, elige una opción correcta.")
+            print("❌ Opción no válida. Por favor, elige una opción correcta.")
 
     def visualizar_tweets(self):
         """Muestra los tweets con el nombre del usuario y accede al menú 'Para ti'."""
@@ -132,7 +132,7 @@ class Menu:
             elif opcion == "2":
                 break
             else:
-                print("Opción no válida. Intenta nuevamente.")
+                print("❌ Opción no válida. Intenta nuevamente.")
 
     def ver_tweets_con_imagenes(self):
         """Abre una ventana de Tkinter para mostrar tweets con imágenes."""
