@@ -34,7 +34,7 @@ class Perfil:
             else:
                 print("Perfil no encontrado.")
         except Exception as e:
-            print(f"Error al mostrar perfil: {e}")
+            print(f"❌ Error al mostrar perfil: {e}")
         finally:
             cursor.close()
             conexion.close()
@@ -54,7 +54,7 @@ class Perfil:
             elif opcion == "3":
                 break
             else:
-                print("Opción no válida. Intenta nuevamente.")
+                print("❌ Opción no válida. Intenta nuevamente.")
                 
                 
     def ver_perfil_grafico(self, usuario_actual):
@@ -87,7 +87,7 @@ class Perfil:
                     except Exception as e:
                         label_foto = tk.Label(ventana, text="Error al cargar la imagen")
                         label_foto.grid(row=0, column=0, rowspan=4, padx=20, pady=20)
-                        print(f"Error al cargar la imagen: {e}")
+                        print(f"❌ Error al cargar la imagen: {e}")
                 else:
                     label_foto = tk.Label(ventana, text="No hay foto de perfil")
                     label_foto.grid(row=0, column=0, rowspan=4, padx=20, pady=20)
@@ -106,7 +106,7 @@ class Perfil:
             else:
                 print("Perfil no encontrado.")
         except Exception as e:
-            print(f"Error al mostrar perfil gráfico: {e}")
+            print(f"❌ Error al mostrar perfil gráfico: {e}")
         finally:
             cursor.close()
             conexion.close()
@@ -138,7 +138,7 @@ class Perfil:
         elif opcion == "6":
             self.menu_perfil(usuario_actual)
         else:
-            print("Opción no válida. Intenta nuevamente.")
+            print("❌ Opción no válida. Intenta nuevamente.")
 
     def actualizar_nombre_usuario(self, usuario_actual):
         nuevo_nombre = input("Nuevo nombre de usuario: ")
@@ -150,9 +150,9 @@ class Perfil:
                 (nuevo_nombre, usuario_actual)
             )
             conexion.commit()
-            print("Nombre de usuario actualizado exitosamente.")
+            print("✅ Nombre de usuario actualizado exitosamente.")
         except Exception as e:
-            print(f"Error al actualizar nombre de usuario: {e}")
+            print(f"❌ Error al actualizar nombre de usuario: {e}")
         finally:
             cursor.close()
             conexion.close()
@@ -167,9 +167,9 @@ class Perfil:
                 (nuevo_email, usuario_actual)
             )
             conexion.commit()
-            print("Correo electrónico actualizado exitosamente.")
+            print("✅ Correo electrónico actualizado exitosamente.")
         except Exception as e:
-            print(f"Error al actualizar correo electrónico: {e}")
+            print(f"❌ Error al actualizar correo electrónico: {e}")
         finally:
             cursor.close()
             conexion.close()
@@ -195,11 +195,11 @@ class Perfil:
                     (nueva_contrasena_encriptada, usuario_actual)
                 )
                 conexion.commit()
-                print("Contraseña actualizada exitosamente.")
+                print("✅ Contraseña actualizada exitosamente.")
             else:
                 print("Contraseña antigua incorrecta.")
         except Exception as e:
-            print(f"Error al actualizar contraseña: {e}")
+            print(f"❌ Error al actualizar contraseña: {e}")
         finally:
             cursor.close()
             conexion.close()
@@ -214,9 +214,9 @@ class Perfil:
                 (nueva_biografia, usuario_actual)
             )
             conexion.commit()
-            print("Biografía actualizada exitosamente.")
+            print("✅ Biografía actualizada exitosamente.")
         except Exception as e:
-            print(f"Error al actualizar biografía: {e}")
+            print(f"❌ Error al actualizar biografía: {e}")
         finally:
             cursor.close()
             conexion.close()
@@ -245,9 +245,9 @@ class Perfil:
                         (self.imagen_seleccionada, usuario_actual)  # Guardamos la ruta de la imagen
                     )
                     conexion.commit()
-                    messagebox.showinfo("Éxito", "Foto de perfil actualizada exitosamente.")
+                    messagebox.showinfo("✅ Éxito", " Foto de perfil actualizada exitosamente.")
                 except Exception as e:
-                    messagebox.showerror("Error", f"No se pudo actualizar la foto: {e}")
+                    messagebox.showerror("❌ Error", f"No se pudo actualizar la foto: {e}")
                 finally:
                     cursor.close()
                     conexion.close()
