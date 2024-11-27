@@ -3,7 +3,6 @@ from tweet import Tweet
 from base_datos import BaseDatos
 import bcrypt
 from crear_tweet_gui import CrearTweetGUI
-from ver_tweets_con_imagen_gui import VerTweetsConImagenGUI
 
 class Menu:
     def __init__(self):
@@ -116,40 +115,10 @@ class Menu:
             return
 
         for tweet in tweets:
-            id_tweet, nombre_usuario, contenido, imagen_url, fecha = tweet
+            id_tweet, nombre_usuario, contenido, fecha = tweet
             print(f"\nUsuario: {nombre_usuario} | Fecha: {fecha}")
             print(f"Contenido: {contenido}")
-            if imagen_url:
-                print(f"Imagen: {imagen_url}")
         
-        # Mostrar menú secundario
-        self.menu_para_ti()
-
-    def menu_para_ti(self):
-        """Muestra el menú 'Para ti'."""
-        while True:
-            print("\n--- Para ti ---")
-            print("1. Ver tweets con imágenes")
-            print("2. Volver al menú principal")
-            opcion = input("Elige una opción: ")
-            if opcion == "1":
-                self.ver_tweets_con_imagenes()
-            elif opcion == "2":
-                break
-            else:
-                print("❌ Opción no válida. Intenta nuevamente.")
-
-    def ver_tweets_con_imagenes(self):
-        """Abre una ventana de Tkinter para mostrar tweets con imágenes."""
-        tweets = self.tweet_manager.obtener_tweets()
-        tweets_con_imagen = [t for t in tweets if t[3]]  # Filtra tweets con imagen
-
-        if not tweets_con_imagen:
-            print("No hay tweets con imágenes.")
-            return
-
-        gui = VerTweetsConImagenGUI(tweets_con_imagen)
-        gui.iniciar()
 
     def ver_perfil(self):
         """Llama al método 'ver_perfil' de la clase Perfil"""

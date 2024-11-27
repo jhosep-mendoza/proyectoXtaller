@@ -11,7 +11,7 @@ class Tweet:
         try:
             cursor.execute(
                 """
-                SELECT p.id_usuario, u.nombre_usuario, p.contenido, p.imagen_url, p.fecha_publicacion
+                SELECT p.id_usuario, u.nombre_usuario, p.contenido, p.fecha_publicacion
                 FROM publicaciones p
                 INNER JOIN usuarios u ON p.id_usuario = u.id_usuario
                 ORDER BY p.fecha_publicacion DESC
